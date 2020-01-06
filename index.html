@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Bookworm</title>
+  <!-- Semantic-UI i Jquery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+    integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
+
+  <!-- Google API i Firebase-->
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+  <script src='https://apis.google.com/js/api.js'></script>
+
+  <!-- Moj CSS i JS skripta-->
+  <link rel="stylesheet" href="css/cover.css" type="text/css" />
+  <script src='js/main.js'></script>
+</head>
+
+<body id="root">
+  <div class="ui inverted vertical center aligned segment">
+    <nav class="ui container">
+      <h1 class="ui inverted header">Bookworm</h1>
+      <div class="ui borderless inverted compact menu">
+        <a class="active item">Test page</a>
+        <a class="item">My books</a>
+        <a class="item">My friends</a>
+      </div>
+    </nav>
+    <div id="login" class="ui middle aligned content container">
+        <h1 style="padding-top: 5pc;" class="ui middle aligned inverted header">Proof of concept:</h1>
+        <div onclick="login()" class="ui inverted huge red button">Click to sign-in</div>
+    </div>
+    
+    
+    <footer id="footer" class="ui inverted vertical segment">
+      <a href="https://github.com/tadijam64/bookworm">Bookworm.</a> <br>Because Goodreads is shit.
+    </footer>
+  </div>
+</body>
+
+</html>
