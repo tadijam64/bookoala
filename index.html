@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Bookoala</title>
+  <title>Bookworm</title>
   <!-- Semantic-UI i Jquery -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -11,21 +11,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
   
-  <script src='oauth.js'></script>
+  <script src='js/oauth.js'></script>
   <!-- Google API -->
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
       </script>
 
   <!-- Moj CSS i JS skripta-->
-  <link rel="stylesheet" href="cover.css" type="text/css" />
+  <link rel="stylesheet" href="css/cover.css" type="text/css" />
   
 </head>
 
 <body id="root">
   <div class="ui inverted vertical center aligned segment">
     <nav class="ui container">
-      <h1 class="ui inverted header">Bookoala</h1>
+      <h1 class="ui inverted header">Bookworm</h1>
       <div class="ui borderless inverted compact menu">
         <a class="active item">Test page</a>
         <a class="item">My books</a>
@@ -35,7 +35,7 @@
 
     <div id="login" class="ui middle aligned content container">
       <h1 style="padding-top: 5pc;" class="ui middle aligned inverted header">Proof of concept:</h1>
-      <div id="sign-in-or-out-button" class="ui inverted huge red button">Click to sign-in</div>
+      <div id="sign-in-or-out-button"></div>
     </div>
     
     <button id="revoke-access-button" class="ui inverted mini button" style="display: none;">Revoke access</button>
