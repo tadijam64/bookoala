@@ -10,15 +10,16 @@
     integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
-
-  <!-- Google API i Firebase-->
-  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
-  <script src='https://apis.google.com/js/api.js'></script>
+  
+  <script src='js/oauth.js'></script>
+  <!-- Google API -->
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+      </script>
 
   <!-- Moj CSS i JS skripta-->
-  <link rel="stylesheet" href="cover.css" type="text/css" />
-  <script src='main.js'></script>
+  <link rel="stylesheet" href="css/cover.css" type="text/css" />
+  
 </head>
 
 <body id="root">
@@ -31,14 +32,16 @@
         <a class="item">My friends</a>
       </div>
     </nav>
+
     <div id="login" class="ui middle aligned content container">
-        <h1 style="padding-top: 5pc;" class="ui middle aligned inverted header">Proof of concept:</h1>
-        <div onclick="login()" class="ui inverted huge red button">Click to sign-in</div>
+      <h1 style="padding-top: 5pc;" class="ui middle aligned inverted header">Proof of concept:</h1>
+      <div id="sign-in-or-out-button" class="ui inverted huge red button">Click to sign-in</div>
     </div>
     
-    
+    <button id="revoke-access-button" class="ui inverted mini button" style="display: none;">Revoke access</button>
     <footer id="footer" class="ui inverted vertical segment">
-      <a href="https://github.com/tadijam64/bookworm">Bookworm.</a> <br>Because Goodreads is shit.
+      <div id="auth-status" style="display: inline;"></div>
+      
     </footer>
   </div>
 </body>
