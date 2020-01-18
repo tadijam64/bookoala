@@ -1,5 +1,4 @@
 var GoogleAuth;
-var SCOPE = 'https://www.googleapis.com/auth/books';
 function handleClientLoad() {
     // Load the API's client and auth2 modules.
     // Call the initClient function after the modules load.
@@ -7,19 +6,14 @@ function handleClientLoad() {
 }
 
 function initClient() {
-
-    // In practice, your app can retrieve one or more discovery documents.
-    var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/books/v1/rest';
-
-    // Initialize the gapi.client object, which app uses to make API requests.
-    // Get API key and client ID from API Console.
-    // 'scope' field specifies space-delimited list of access scopes.
+    // Initialize the gapi.client object, which we'll use to make API requests.
     gapi.client.init({
         'apiKey': 'AIzaSyA5pZ6XhLTxF2JfiduagxpUhKVtThL8gzs',
-        'discoveryDocs': [discoveryUrl],
+        'discoveryDocs': 'https://www.googleapis.com/discovery/v1/apis/books/v1/rest',
         'clientId': '905719463586-q7vrdt3p39rcpkh1b3s9uvgogp8ivld8.apps.googleusercontent.com',
-        'scope': SCOPE
+        'scope': 'https://www.googleapis.com/auth/books'
     }).then(function () {
+        // Get the Google Auth instance
         GoogleAuth = gapi.auth2.getAuthInstance();
 
         // Listen for sign-in state changes.
@@ -29,8 +23,7 @@ function initClient() {
         var user = GoogleAuth.currentUser.get();
         setSigninStatus();
 
-        // Call handleAuthClick function when user clicks on
-        //      "Sign In/Authorize" button.
+        // Call handleAuthClick function when user clicks on the sign-in button.
         $('#sign-in-or-out-button').click(function () {
             handleAuthClick();
         });
@@ -40,42 +33,54 @@ function initClient() {
     });
 }
 
+// Handles cliks on the sign-in/sign-out buttons.
 function handleAuthClick() {
     if (GoogleAuth.isSignedIn.get()) {
         // User is authorized and has clicked 'Sign out' button.
-        console.log("signed out");
         GoogleAuth.signOut();
     } else {
         // User is not signed in. Start Google auth flow.
         GoogleAuth.signIn();
-        console.log("signed in");
     }
 }
 
+// Revokes the access token.
 function revokeAccess() {
     GoogleAuth.disconnect();
 }
 
+// Updates the status of the user.
+function updateSigninStatus(isSignedIn) {
+    setSigninStatus();
+}
+
+// Checks if the user is signed-in and changes the UI accordingly.
 function setSigninStatus(isSignedIn) {
     var user = GoogleAuth.currentUser.get();
     var isAuthorized = user.hasGrantedScopes(SCOPE);
     if (isAuthorized) {
-        $('#sign-in-or-out-button, #revoke-access-button, #auth-status').appendTo('#footer');
-        $('#sign-in-or-out-button').attr('class', "ui inverted mini yellow button");
-        $('#sign-in-or-out-button').html('Sign out');
-        $('#revoke-access-button').attr('style', '');
-        $('#auth-status').html('<br>You are currently signed in and have granted ' +
-            'access to this app.');
+        changeButtonsOnSignIn();
     } else {
-        $('#revoke-access-button').attr('style', 'display:none;');
-        $('#sign-in-or-out-button').html('Sign In/Authorize');
-        $('#sign-in-or-out-button').attr('class', "ui inverted huge red button");
-        $('#sign-in-or-out-button').appendTo("#login");
-        $('#auth-status').html('You have not authorized this app or you are ' +
-            'signed out.');
+        changeButtonsOnSignOut();
     }
 }
 
-function updateSigninStatus(isSignedIn) {
-    setSigninStatus();
+// Removes the sign-in button and adds the sign-out and revoke buttons to the footer.
+function changeButtonsOnSignIn() {
+    $('#sign-in-or-out-button, #revoke-access-button, #auth-status').appendTo('#footer');
+    $('#sign-in-or-out-button').attr('class', "ui inverted mini yellow button");
+    $('#sign-in-or-out-button').html('Sign out');
+    $('#revoke-access-button').attr('style', '');
+    $('#auth-status').html('<br>You are currently signed in and have granted ' +
+        'access to this app.');
+}
+
+// Removes the sign-out and revoke buttons and adds the sign-in button.
+function changeButtonsOnSignOut() {
+    $('#revoke-access-button').attr('style', 'display:none;');
+    $('#sign-in-or-out-button').html('Sign In');
+    $('#sign-in-or-out-button').attr('class', "ui inverted huge red button");
+    $('#sign-in-or-out-button').appendTo("#login");
+    $('#auth-status').html('You have not authorized this app or you are ' +
+        'signed out.');
 }
