@@ -1,4 +1,5 @@
 var GoogleAuth;
+var SCOPE = 'https://www.googleapis.com/auth/books';
 function handleClientLoad() {
     // Load the API's client and auth2 modules.
     // Call the initClient function after the modules load.
@@ -9,9 +10,9 @@ function initClient() {
     // Initialize the gapi.client object, which we'll use to make API requests.
     gapi.client.init({
         'apiKey': 'AIzaSyA5pZ6XhLTxF2JfiduagxpUhKVtThL8gzs',
-        'discoveryDocs': 'https://www.googleapis.com/discovery/v1/apis/books/v1/rest',
+        'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/books/v1/rest'],
         'clientId': '905719463586-q7vrdt3p39rcpkh1b3s9uvgogp8ivld8.apps.googleusercontent.com',
-        'scope': 'https://www.googleapis.com/auth/books'
+        'scope': SCOPE
     }).then(function () {
         // Get the Google Auth instance
         GoogleAuth = gapi.auth2.getAuthInstance();
@@ -71,7 +72,7 @@ function changeButtonsOnSignIn() {
     $('#sign-in-or-out-button').attr('class', "ui inverted mini yellow button");
     $('#sign-in-or-out-button').html('Sign out');
     $('#revoke-access-button').attr('style', '');
-    $('#auth-status').html('<br>You are currently signed in and have granted ' +
+    $('#auth-status').html('You are currently signed in and have granted ' +
         'access to this app.');
 }
 

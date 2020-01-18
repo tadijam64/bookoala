@@ -10,16 +10,18 @@
     integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
-  
+
+  <!-- OAuth2 skripta -->
   <script src='oauth.js'></script>
+
   <!-- Google API -->
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-      </script>
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
 
   <!-- Moj CSS i JS skripta-->
   <link rel="stylesheet" href="cover.css" type="text/css" />
-  
+
 </head>
 
 <body id="root">
@@ -37,11 +39,12 @@
       <h1 style="padding-top: 5pc;" class="ui middle aligned inverted header">Proof of concept:</h1>
       <div id="sign-in-or-out-button"></div>
     </div>
-    
+
     <button id="revoke-access-button" class="ui inverted mini button" style="display: none;">Revoke access</button>
     <footer id="footer" class="ui inverted vertical segment">
-      <div id="auth-status" style="display: inline;"></div>
-      
+      <div id="auth-status" style="padding-top:10px;"></div>
+
+
     </footer>
   </div>
 </body>
